@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DataPointController extends Controller
+class CropController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,22 @@ class DataPointController extends Controller
     public function index()
     {
         //
-	  $data = \App\DataPoint::all();
 
-    return view('DataPoint/index',['data'=>$data]);
+	  return view('Crop/index',['data' => \App\Crop::all()]) ;
     }
 
     public function countItems(){
-	    return \App\DataPoint::count();
+	    return \App\Crop::count();
+    }
+
+    public function ItemsCount(){
+
+      $crops = \App\Crop::all();
+
+      foreach($crops as $crop){
+        echo $crop->datapoints;
+      }
+
     }
 
     /**
@@ -53,6 +62,11 @@ class DataPointController extends Controller
     public function show($id)
     {
         //
+        $data = \App\Crop::find($id)->datapoints;
+
+        // return \App\Crop::find($id)->varieties;
+
+        return view('Crop/show',['data' => $data]);
     }
 
     /**

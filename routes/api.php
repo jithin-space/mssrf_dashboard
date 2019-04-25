@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/datapoints/count', 'DataPointController@countItems');
+
+Route::get('/crops/count', 'CropController@countItems');
+Route::get('/crops/itemsCount', 'CropController@itemsCount');
 Route::resource('/datapoints','DataPointController',['only'=>['index','show']]);
+Route::resource('/crops','CropController',['only'=>['index','show']]);

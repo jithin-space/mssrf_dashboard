@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DataPointController extends Controller
+class VarietyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,7 @@ class DataPointController extends Controller
     public function index()
     {
         //
-	  $data = \App\DataPoint::all();
-
-    return view('DataPoint/index',['data'=>$data]);
-    }
-
-    public function countItems(){
-	    return \App\DataPoint::count();
+         return view('Variety/index',['data' => \App\Variety::all()]) ;
     }
 
     /**
@@ -53,6 +47,9 @@ class DataPointController extends Controller
     public function show($id)
     {
         //
+
+        $data = \App\Variety::find($id)->units()->with('datapoint')->get();
+        return view('Variety/show',['data' => $data]);
     }
 
     /**

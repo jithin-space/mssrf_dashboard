@@ -13,7 +13,7 @@ class DataPoint extends Eloquent
 	}
 
 	public function crops(){
-		return $this->belongsToMany(Crop::class);
+		return $this->belongsToMany(Crop::class, null, 'crop_ids', 'data_point_ids');
 	}
 
 	public function units(){
@@ -23,5 +23,5 @@ class DataPoint extends Eloquent
 	public function houseInfo(){
 		return $this->hasOne(HouseInfo::class);
 	}
-	
+
 }

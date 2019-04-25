@@ -105,6 +105,7 @@ if(!isset($dp->crops)){
 					$unit->years = $vvalue->years;
 					$unit->save();
 					$vrObj->units()->save($unit);
+          $unit->datapoint()->associate($dataPoint);
 					$dataPoint->units()->save($unit);
 
 

@@ -11,7 +11,7 @@ class Crop extends Eloquent
 	protected $fillable = ['name','eng','mal'];
 
 	public function datapoints(){
-		return $this->hasMany(DataPoint::class);
+		return $this->belongsToMany(DataPoint::class, null, 'data_point_ids', 'crop_ids');
 	}
 	public function varieties(){
 

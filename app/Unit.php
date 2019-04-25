@@ -16,7 +16,7 @@ class Unit extends Eloquent
 
 	public function datapoint(){
 
-		return $this->belongsTo(Datapoint::class);
+		return $this->belongsTo(DataPoint::class);
 
 	}
 
