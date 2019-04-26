@@ -103,6 +103,8 @@ if(!isset($dp->crops)){
 					$unit->loss = $vvalue->loss;
 					$unit->overcome = $vvalue->overcome;
 					$unit->years = $vvalue->years;
+          $unit->geo = $dataPoint->geolocation;
+          $unit->pt = $dataPoint->pt;
 					$unit->save();
 					$vrObj->units()->save($unit);
           $unit->datapoint()->associate($dataPoint);

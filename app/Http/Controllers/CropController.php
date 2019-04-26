@@ -63,10 +63,11 @@ class CropController extends Controller
     {
         //
         $data = \App\Crop::find($id)->datapoints;
+        $name = \App\Crop::find($id)->name;
 
         // return \App\Crop::find($id)->varieties;
 
-        return view('Crop/show',['data' => $data]);
+        return view('Crop/show',['data' => $data,'name'=> $name]);
     }
 
     /**

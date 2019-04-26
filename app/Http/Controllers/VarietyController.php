@@ -48,7 +48,7 @@ class VarietyController extends Controller
     {
         //
 
-        $data = \App\Variety::find($id)->units()->with('datapoint')->get();
+        $data = \App\Variety::find($id)->units;
         return view('Variety/show',['data' => $data]);
     }
 

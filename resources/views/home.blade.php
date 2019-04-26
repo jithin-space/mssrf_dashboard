@@ -7,11 +7,12 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> -->
+        	<link type="text/css" href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet"/>
 
         <!-- Styles -->
         <style>
-            html, body {
+            /* html, body {
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
@@ -60,10 +61,29 @@
 
             .m-b-md {
                 margin-bottom: 30px;
-            }
+            } */
         </style>
     </head>
     <body>
+      <div class="container-fluid">
+        <div class="card-deck">
+          <div class="card bg-white">
+            <div class="card-body text-center">
+              <a href="{{route('datapoints.index')}}">DataPoints:{{$data['datapoints']}}</a>
+            </div>
+          </div>
+          <div class="card bg-white">
+            <div class="card-body text-center">
+               <a href="{{route('crops.index')}}">Crops: {{$data['crops']}}</a>
+            </div>
+          </div>
+          <div class="card bg-white">
+            <div class="card-body text-center">
+               <a href="{{route('varieties.index')}}">Varieties: {{$data['varieties']}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
         <div class="flex-center position-ref full-height">
 
 
@@ -71,18 +91,29 @@
               <div class="title m-b-md">
                   Biodiversity Survey Mssrf
               </div>
-                <div class="title m-b-md">
-                    <a href="{{route('datapoints.index')}}">DataPoints:{{$data['datapoints']}}</a>
-                </div>
-                <div class="title m-b-md">
-                    <a href="{{route('crops.index')}}">Crops: {{$data['crops']}}</a>
-                </div>
-                <div class="title m-b-md">
-                      <a href="{{route('varieties.index')}}">Varieties: {{$data['varieties']}}</a>
-                </div>
 
+                <div class="row">
+                 <div class="col">
+                   <div class="title m-b-md">
+                       <a href="{{route('datapoints.index')}}">DataPoints:{{$data['datapoints']}}</a>
+                   </div>
+                 </div>
+                 <div class="col">
+                   <div class="title m-b-md">
+                       <a href="{{route('crops.index')}}">Crops: {{$data['crops']}}</a>
+                   </div>
+                 </div>
+                 <div class="col">
+                   <div class="title m-b-md">
+                         <a href="{{route('varieties.index')}}">Varieties: {{$data['varieties']}}</a>
+                   </div>
+                 </div>
+                </div>
 
             </div>
         </div>
+        <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
     </body>
 </html>
