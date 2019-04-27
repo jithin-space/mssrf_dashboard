@@ -12,17 +12,17 @@ class PanchayathTableSeeder extends Seeder
     public function run()
     {
         //
-	DB::table('panchayath')->delete();
+	DB::table('panchayaths')->delete();
         $json = File::get('database/data/data/panchayath.json');
         $data = json_decode($json);
 
         foreach($data as $panchayath) {
 
-		DB::table('panchayath')->insert(array(
+		DB::table('panchayaths')->insert(array(
 			'name' => $panchayath->name,
 			'eng' => $panchayath->eng,
 			'mal' => $panchayath->mal
-			));               
+			));
         }
 
     }

@@ -8,99 +8,101 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link type="text/css" href="{{asset('css/dc.css')}}" rel="stylesheet"/>
+      	<!-- <link type="text/css" href="{{asset('css/leaflet-legend.css')}}" rel="stylesheet"/> -->
+      	<link type="text/css" href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet"/>
+        <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
 
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        body{
+      		/* background-image: url( "{{asset('images/background.jpg')}}"); */
+      		background-color: white;
+      		background-size: cover;
+      		backface-visibility: hidden;
+      	}
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-                flex-wrap:wrap;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
 
-          <div class="content">
-            <div class="title m-b-md">
-                All Crops
-            </div>
-            <table>
+      <div class="container">
+
+        <div class="page-header text-primary pb-2 mt-4 mb-2">
+          <h1>All Crops</h1>
+          <hr/>
+        </div>
+
+        <table class='table table-striped table-bordered bg-secondary' id='dc-table-chart' >
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Crop Name</th>
+              <th> Data Points </th>
+              <th> Varieties </th>
+            </tr>
+          </thead>
+          <tbody>
+
+          @foreach ($data as $crop)
+
               <tr>
-                <th>Index</th>
-                <th>Crop Name</th>
-                <th> Data Points </th>
-                <th> Varieties </th>
+                <td>
+
+                </td>
+                <td>
+                  {{ucfirst($crop->eng)}}
+                </td>
+                <td>
+                <a href="{{route('crops.show',$crop->_id)}}">  {{$crop->datapoints()->count()}}</a>
+                </td>
+                <td>
+                  {{$crop->varieties()->count()}}
+                </td>
               </tr>
 
-            @foreach ($data as $crop)
+          @endforeach
+        </tbody>
+        </table>
 
-                <tr>
-                  <td>
-                    {{$loop->iteration}}
-                  </td>
-                  <td>
-                    {{$crop->name}}
-                  </td>
-                  <td>
-                  <a href="{{route('crops.show',$crop->_id)}}">  {{$crop->datapoints()->count()}}</a>
-                  </td>
-                  <td>
-                    {{$crop->varieties()->count()}}
-                  </td>
-                </tr>
+      </div>
 
-            @endforeach
-          </table>
 
-            
-            </div>
-        </div>
+
+
+
+
+        <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+        <script type="text/javascript" src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js'></script>
+
+
+
+
+        <script>
+
+
+
+        var datatable =$('#dc-table-chart').DataTable({
+
+          "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'asc' ]],
+        "lengthMenu": [[5,10, 15,20, -1], [5, 10, 15,20, "All"]]
+        });
+
+        datatable.on( 'order.dt search.dt', function () {
+       datatable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+           cell.innerHTML = i+1;
+       } );
+   } ).draw();
+
+
+        </script>
     </body>
 </html>

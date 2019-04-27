@@ -20,14 +20,13 @@ class DataPointTableSeeder extends Seeder
 	foreach($data as $panchayath) {
 		array_chunk($panchayath,1);
 		foreach($panchayath as $dp){
-			$pt = \App\Panchayath::where('name', $dp->panchayath)->first();
-			echo $pt;
-			echo "hello";
+			$pt = \App\Panchayath::where('name', strtolower($dp->panchayath))->first();
 			if(!$pt){
 				$pt = new \App\Panchayath;
 				$pt->name = strtolower($dp->panchayath);
 				$pt->eng = $pt->name;
 				$pt->mal = $pt->name;
+        $pt->save();
 			}
 
 			$houseInfo = new \App\HouseInfo;
@@ -59,6 +58,8 @@ class DataPointTableSeeder extends Seeder
 			$dataPoint->surveyorName = isset($dp->surveyor_name)?$dp->surveyor_name:'not-found';
 			$dataPoint->pt = $dp->panchayath;
 			$dataPoint->save();
+
+      $pt->datapoints()->save($dataPoint);
 
 			$dataPoint->houseInfo()->save($houseInfo);
 if(!isset($dp->crops)){
