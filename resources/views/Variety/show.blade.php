@@ -50,9 +50,11 @@
 <div class="container-fluid">
 	<div class="fixed-top">
 		<div class="d-flex flex-row-reverse m-2 text-white">
+			<a href="{{route('varieties.heat',$id)}}"><div class="p-2 bg-danger text-white">View Heat Map</div></a>
 			<div class="p-2 bg-info">Count:[{{$data->count()}}]</div>
 		 	<div class="p-2 bg-primary">Item:{{ucfirst($data[0]->variety['name'])}}</div>
-		 <div class="p-2 bg-warning ">View:Variety</div>
+		 	<div class="p-2 bg-warning ">View:Variety</div>
+
 		</div>
 	</div>
 
@@ -81,6 +83,8 @@
 <script type="text/javascript" src="{{asset('js/leaflet.markercluster.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('js/dc.leaflet.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/leaflet-heat.js')}}"></script>
+
 
 <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
@@ -128,6 +132,8 @@
     .rangeRound([0, output_range]);
 
 
+
+
 		var color = d3.scaleLinear()
 	 .domain([0, output_range])
 	 .range(["red", "white"]);
@@ -138,29 +144,18 @@
 			return d.ennam;
 		});
 
-		// console.log(max);
-		// console.log(output_range);
-		// console.log(testGroup.all());
+		var dump = xf.dimension(function(d){
+			return [d.geo.latitude,d.geo.longitude];
+		});
 
-		 // console.log(facilitiesGroup.all());
-		 // var facilitiesGroup = facilities.group().reduce(
-			// 	 function(p, v) {
-			// 			 (p['varieties']= p['varieties']||[]).push(v.variety);
-			// 			 p.variety = v.variety;
-			// 			 ++p.count;
-			// 			 return p;
-			// 	 },
-			// 	 function(p, v) {
-			// 			 --p.count;
-			// 			 return p;
-			// 	 },
-			// 	 function() {
-			// 			 return {count: 0};
-			// 	 }
-		 //
-		 //
-		 //
-		 // );
+		var test=dump.group().reduceSum(function(d){
+			return d.ennam;
+		});
+
+		var pointsHeat = test.all().map(function(d){
+			return [d.key[0],d.key[1],d.value];
+		});
+
 
 		 var increment = Math.floor(output_range/10);
 
@@ -187,6 +182,9 @@
               });
 
 						});
+
+						// L.heatLayer(pointsHeat, {radius:5, blur: 5 , maxZoom:15 ,gradient: {0.4: 'yellow', 0.65: 'lime', 1: 'green'}}).addTo($('.map'));
+
 
 		//  var types = xf.dimension(function(d) { return d.variety; });
 		//

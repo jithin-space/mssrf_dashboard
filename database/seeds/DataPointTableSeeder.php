@@ -15,9 +15,16 @@ class DataPointTableSeeder extends Seeder
 	DB::table('units')->delete();
 	DB::table('house_info')->delete();
 	$json = File::get('database/data/result.json');
-	$data = json_decode($json);
+  $json1 = File::get('database/data/input.json');
 
+
+	$data = json_decode($json);
+  $data1 = json_decode($json1);
+
+  // $dataAll = array_merge($data,$data)
 	foreach($data as $panchayath) {
+
+    echo "hello";
 		array_chunk($panchayath,1);
 		foreach($panchayath as $dp){
 			$pt = \App\Panchayath::where('name', strtolower($dp->panchayath))->first();

@@ -124,7 +124,7 @@
                       <div class="card-block">
                           <h6 class="m-b-20">Varieties</h6>
                           <h2 class="text-right"><i class="fa fa-leaf fa-lg f-left"></i><span>{{$data['varieties']}}</span></h2>
-                          <p class="m-b-0">Views Available<span class="f-right">2</span></p>
+                          <p class="m-b-0">Views Available<span class="f-right">3</span></p>
                       </div>
                   </a>
               </div>
