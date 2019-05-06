@@ -88,6 +88,7 @@ if(!isset($dp->crops)){
 				}
 				foreach($value->varieties as $vname=>$vvalue){
 
+					$vname = (strtolower($vname)=='bamblimaas')?'bamblimoos':$vname;
 					$vrObj = \App\Variety::whereHas('crop',function($query) use(&$key){
 						$query->where('name',$key);
 					})->where('name',$vname)->first();
