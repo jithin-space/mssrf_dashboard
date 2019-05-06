@@ -22,8 +22,10 @@ class RestDataSeeder extends Seeder
 	foreach($data1 as $panchayath) {
 		array_chunk($panchayath,1);
     echo "hello";
+
 		foreach($panchayath as $dp){
-			$pt = \App\Panchayath::where('name', strtolower($dp->panchayath))->first();
+      $pname = (strtolower($dp->panchayath)=== 'thondernadu')?'thondarnadu':$dp->panchayath;
+			$pt = \App\Panchayath::where('name', strtolower($pname))->first();
 			if(!$pt){
 				$pt = new \App\Panchayath;
 				$pt->name = strtolower($dp->panchayath);
