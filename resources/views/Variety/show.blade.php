@@ -50,6 +50,8 @@
 <div class="container-fluid">
 	<div class="fixed-top">
 		<div class="d-flex flex-row-reverse m-2 text-white">
+
+			<a href="{{route('varieties.unit',$id)}}"><div class="p-2 bg-danger text-white">View Table</div></a>
 			<a href="{{route('varieties.heat',$id)}}"><div class="p-2 bg-danger text-white">View Heat Map</div></a>
 			<div class="p-2 bg-info">Count:[{{$data->count()}}]</div>
 		 	<div class="p-2 bg-primary">Item:{{ucfirst($data[0]->variety['name'])}}</div>

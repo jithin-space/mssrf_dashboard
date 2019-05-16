@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class VarietyController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class VarietyController extends Controller
     public function index()
     {
         //
-         return view('Variety/index',['data' => \App\Variety::all()]) ;
     }
 
     /**
@@ -25,13 +24,6 @@ class VarietyController extends Controller
     public function create()
     {
         //
-    }
-
-    public function unitByVariety($id){
-
-      $data = \App\Variety::find($id)->units;
-      return view('Variety/unit',['data' => $data,'id'=>$id]);
-
     }
 
     /**
@@ -45,6 +37,8 @@ class VarietyController extends Controller
         //
     }
 
+    
+
     /**
      * Display the specified resource.
      *
@@ -55,16 +49,8 @@ class VarietyController extends Controller
     {
         //
 
-        $data = \App\Variety::find($id)->units;
-        return view('Variety/show',['data' => $data,'id'=>$id]);
     }
 
-
-    public function heat($id){
-      $data = \App\Variety::find($id)->units;
-
-      return view('Variety/heat',['data' => $data]);
-    }
     /**
      * Show the form for editing the specified resource.
      *
