@@ -20,4 +20,9 @@ class Unit extends Eloquent
 
 	}
 
+	public function panchayath()
+    {
+        return $this->hasOneThrough('App\Panchayath', 'App\DataPoint');
+    }
+
 }
