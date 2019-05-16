@@ -12,7 +12,7 @@ class FinalDataSeeder extends Seeder
     {
         //
 
-  $json1 = File::get('database/data/random_final.json');
+  $json1 = File::get('database/data/rest.json');
 
 
 
