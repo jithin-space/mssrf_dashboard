@@ -102,9 +102,20 @@
 
  var data = {!! json_encode($data->toArray()) !!}
 
+ var xxf = crossfilter(data);
+
+var test = xxf.dimension(function(d){
+	return (d.gridId)?d.gridId:99;
+});
+
+var out=test.group().reduceSum(function(d){
+	return d.ennam;
+});
+
+console.log(out);
  function drawMarkerArea(data) {
 
-		console.log(data);
+		// console.log(data);
 		 var xf = crossfilter(data);
 		 var groupname = "marker-area";
 		 var facilities = xf.dimension(function(d) { return d.geo.latitude+","+d.geo.longitude });
@@ -229,6 +240,8 @@
 
 
  drawMarkerArea(data);
+
+
 
 
 
