@@ -65,6 +65,13 @@ class VarietyController extends Controller
 
       return view('Variety/heat',['data' => $data]);
     }
+
+    public function grid($id){
+
+      $data = \App\Variety::find($id)->units;
+
+      return view('Variety/grid',['data'=> $data]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
