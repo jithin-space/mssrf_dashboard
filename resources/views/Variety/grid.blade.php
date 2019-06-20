@@ -40,6 +40,10 @@
     z-index: 1040 !important;
   }
 
+	.leaflet-tile-pane .leaflet-layer{
+		z-index: 0 !important;
+	}
+
 	.column{
 		position:absolute;
 		bottom:0;
