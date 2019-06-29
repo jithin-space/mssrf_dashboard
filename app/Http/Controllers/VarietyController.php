@@ -17,6 +17,10 @@ class VarietyController extends Controller
          return view('Variety/index',['data' => \App\Variety::all()]) ;
     }
 
+    public function api_list(){
+      $data = \App\Variety::all();
+      return json_encode($data);
+    }
     /**
      * Show the form for creating a new resource.
      *

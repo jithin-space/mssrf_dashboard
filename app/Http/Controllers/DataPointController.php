@@ -19,6 +19,10 @@ class DataPointController extends Controller
     return view('DataPoint/index',['data'=>$data]);
     }
 
+    public function api_list(){
+      $data = \App\DataPoint::all();
+      return json_encode($data);
+    }
     public function countItems(){
 	    return \App\DataPoint::count();
     }
