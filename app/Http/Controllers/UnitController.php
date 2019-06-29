@@ -15,6 +15,11 @@ class UnitController extends Controller
     {
         //
     }
+    public function api_list(){
+      $data = \App\Unit::all();
+      return json_encode($data);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +42,7 @@ class UnitController extends Controller
         //
     }
 
-    
+
 
     /**
      * Display the specified resource.

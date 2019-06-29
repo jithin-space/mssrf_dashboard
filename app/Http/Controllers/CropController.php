@@ -17,6 +17,10 @@ class CropController extends Controller
 
 	  return view('Crop/index',['data' => \App\Crop::all()]) ;
     }
+    public function api_list(){
+      $data = \App\Crop::all();
+      return json_encode($data);
+    }
 
     public function countItems(){
 	    return \App\Crop::count();
