@@ -58,7 +58,7 @@
 }
 
  .column svg .swatch{
-	 opacity:0.7;
+	 opacity:1;
  }
 
 
@@ -216,14 +216,17 @@ if(inter.filter(function(d){ return d.key === parseInt(el.properties.grid_no)})[
 
 	var dummy = inter.filter(function(d){ return d.key === parseInt(el.properties.grid_no)})[0].value;
 	el.properties.intensity = color[x(dummy)];
-
+	el.properties.count = dummy;
 	console.log(dummy);
 	console.log(el.properties.intensity);
 
 }
+
 else{
-		el.properties.intensity= color[0];
+		el.properties.intensity = '#FFFFFF';
+		el.properties.count = 0;
 }
+
 });
 
 
@@ -238,14 +241,45 @@ var countriesOverlay = L.d3SvgOverlay(function(sel, proj) {
 
   var upd = sel.selectAll('path').data(countries);
 
+
+
+
   upd.enter()
     .append('path')
     .attr('d', proj.pathFromGeojson)
-    .attr('stroke', 'black')
     .attr('fill', function(d){
 		 return	d3.rgb(d.properties.intensity) })
-    .attr('fill-opacity', '0.7');
+		 .attr('stroke','black')
+    .attr('fill-opacity', '1')
+		.on("mouseover", function(d) {
+			d3.select(this).attr('fill-opacity','0.7');
+
+			}).on("mouseout", function(d, i) {
+            d3.select(this).attr("fill-opacity", function(d) {
+                return d3.rgb('1');
+            });
+        }).on("mousemove", function(d) {
+    }).append("svg:title")
+   .text(function(d) { return d.properties.count||'0'});
+
   upd.attr('stroke-width', 1 / proj.scale);
+
+	// var tooltip = upd.append("g")
+  //   .attr("class", "tooltip")
+  //   .style("display", "none");
+	//
+  // tooltip.append("rect")
+  //   .attr("width", 60)
+  //   .attr("height", 20)
+  //   .attr("fill", "white")
+  //   .style("opacity", 0.5);
+	//
+  // tooltip.append("text")
+  //   .attr("x", 30)
+  //   .attr("dy", "1.2em")
+  //   .style("text-anchor", "middle")
+  //   .attr("font-size", "12px")
+  //   .attr("font-weight", "bold");
 });
 
 L.control.layers({"Geo Tiles": tiles}, {"Countries": countriesOverlay}).addTo(map);
