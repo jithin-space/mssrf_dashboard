@@ -49,6 +49,7 @@
 	<div class="container-fluid">
 		<div class="fixed-top">
 			<div class="d-flex flex-row-reverse m-2 text-white">
+				<a href="{{route('crops.units',['id'=>"$id"])}}" ><div class="p-2 bg-success text-white"> view units </div> </a>
 				<div class="p-2 bg-info">Count:[{{$data->count()}}]</div>
 			 	<div class="p-2 bg-primary">Item:{{ucfirst($name)}}</div>
 			 <div class="p-2 bg-warning ">View:Crop</div>
