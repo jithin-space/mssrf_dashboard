@@ -36,6 +36,13 @@ class CropController extends Controller
 
     }
 
+    public function getUnits($id){
+
+      $crop = \App\Crop::find($id);
+      return view('Crop.units')->with('data', $crop->varieties()->with('units')->get());
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,7 +78,7 @@ class CropController extends Controller
 
         // return \App\Crop::find($id)->varieties;
 
-        return view('Crop/show',['data' => $data,'name'=> $name]);
+        return view('Crop/show',['data' => $data,'name'=> $name,'id'=>$id]);
     }
 
     /**
