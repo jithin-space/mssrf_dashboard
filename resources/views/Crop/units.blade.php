@@ -205,7 +205,7 @@ return total.concat(el.units);
  console.log(domain.length);
  var generator = d3.scale.linear()
   .domain([0,1,2,3,4,5,6,7,8,9,10])
-  .range(["#ABD516","#89C41E","#67B327","#46A330","#249239","#038242","#02723A","#016332","#00532A","#004422","#00331a"]
+  .range(["#D47D80","#CE6E71","#C85F63","#C25255","#BC4549","#B6383D","#B02D31","#AA2226","#A4171C","#9E0E12","#99050A"]
   )
   .interpolate(d3.interpolateRgb);
 
